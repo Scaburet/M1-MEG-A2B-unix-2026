@@ -35,6 +35,15 @@ dependencies:
   - pip:
     - watermark
 
+  # For the M1 A2B course:
+  - fastqc
+  - multiqc
+  - fastp
+  - star
+  - samtools
+  - qualimap
+  - subread  
+
   # R environment (version for Ubuntu 24.04)
   - r-irkernel
   - r-base
