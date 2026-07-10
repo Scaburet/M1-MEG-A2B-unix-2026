@@ -1,0 +1,45 @@
+name: template-R-SC-2026
+# adapté de plasmabio-template-r, avec modifs de L3BioSciences-BioAnalyses-R, dernier env à avoir Rstudio sur uracile après maj Plasma
+# 09/07/2026
+
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  # Jupyter dependencies
+  - jupyterhub>=4.1,<5
+  - jupyterlab>=4.0,<5
+  - notebook>=7,<8
+  - jupyter_server>=2,<3
+  - jupyter-server-proxy>=4.1,<4.2
+  - jupyter-resource-usage
+  - jupyterlab-topbar-text    # affiche le nom de l'environnement à droite dans la topbar
+  - nodejs
+  - nbresuse
+  - libgomp
+  
+  # Jupyter archive
+  # https://github.com/jupyterlab-contrib/jupyter-archive
+  - jupyter-archive
+
+  # Bash environment
+  - bash_kernel
+
+  # RStudio proxy (nécessaire pour afficher RStudio dans JupyterLab)
+  - jupyter-rsession-proxy==2.3.0   
+  
+  # Python environment
+  - python=3.10
+  - pip
+  - pip:
+    - watermark
+
+  # R environment (version for Ubuntu 24.04)
+  - r-irkernel
+  - r-base
+
+  # R packages
+  - r-essentials                   # inclut tidyverse                                       
+  # - r-markdown
+  
