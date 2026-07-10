@@ -1,24 +1,18 @@
-# Template materials in R
+# UE A2B - TP 5 et 6
 
-Example repository to create an environment with course materials in R.
+1ère partie du pipeline d'analyse RNAseq pour le M1 du Magistère de Génétique - Université Paris Cité
+UE A2B - TP 5 & 6 Environnement bash pour les premières étapes d'une analyse RNAseq
+-> quality check, processing, mapping de reads RNAseq paired-end
 
 ## Try it on Binder
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/plasmabio/template-r/master?urlpath=%2Flab/) Jupyter + R kernel
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Scaburet/M1-MEG-A2B-unix-2026/master?urlpath=%2Flab/) Jupyter + R kernel
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/plasmabio/template-r/master?urlpath=rstudio) RStudio
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Scaburet/M1-MEG-A2B-unix-2026/master?urlpath=rstudio) RStudio
 
 
 ## Structure of the repo
 
-This repository is based on the [binder-examples/conda](https://github.com/binder-examples/conda) example.
-
-[`repo2docker`](https://repo2docker.readthedocs.io) is the underlying tool that is used to build an environment from a repository.
-
-`repo2docker` can be configured with several types of files. In the case of this repo:
-
-- `binder/environment.yml`: specify dependencies that will be installed using `conda`
-- `binder/postBuild`: specify R or Bioconductor packages *not available* in [Anaconda cloud](https://anaconda.org/) (*i.e* not installable by `conda`).
 
 Both JupyterLab and RStudio are installed.
 
