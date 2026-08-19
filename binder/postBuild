@@ -4,6 +4,9 @@ set -e     # to avoid errors being silently ignored
 # Installation du kernel Bash dans l'environnement Jupyter
 python -m bash_kernel.install --sys-prefix
 
+# Adding the notebook environment's bin directory to PATH.
+export PATH=/srv/conda/envs/notebook/bin:$PATH
+
 # Enregistre le kernel R pour cet environnement
 R --quiet -e "IRkernel::installspec(prefix='/srv/conda/envs/notebook')" || true
 
