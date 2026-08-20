@@ -1,23 +1,15 @@
 #!/bin/bash
 set -e     # to avoid errors being silently ignored
 
-# Installation du kernel Bash dans l'environnement Jupyter
-#python -m bash_kernel.install --sys-prefix
-#python -m ipykernel install --user --name bash --env "PATH" "/srv/conda/envs/notebook/bin"
-
-# Adding the notebook environment's bin directory to PATH.
-#export PATH=/srv/conda/envs/notebook/bin:$PATH
-
-#-------- bash kernel ------------
+#-------- Gestion du kernel bash pour les notebooks ------------
 
 # Installer le kernelspec bash dans l'environnement courant
 ENV_PREFIX="${CONDA_PREFIX:-/srv/conda/envs/notebook}"
 
 "${ENV_PREFIX}/bin/python" -m bash_kernel.install --sys-prefix
 
+# Modification of kernel.json to add the notebook environment's bin directory to PATH
 KERNEL_JSON="${ENV_PREFIX}/share/jupyter/kernels/bash/kernel.json"
-
-# Modification du kernel.json
 python - "${KERNEL_JSON}" "${ENV_PREFIX}" <<'PY'
 import json
 import sys
