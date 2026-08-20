@@ -2,11 +2,41 @@
 set -e     # to avoid errors being silently ignored
 
 # Installation du kernel Bash dans l'environnement Jupyter
-python -m bash_kernel.install --sys-prefix
+#python -m bash_kernel.install --sys-prefix
+#python -m ipykernel install --user --name bash --env "PATH" "/srv/conda/envs/notebook/bin"
 
 # Adding the notebook environment's bin directory to PATH.
-export PATH=/srv/conda/envs/notebook/bin:$PATH
+#export PATH=/srv/conda/envs/notebook/bin:$PATH
 
+#-------- bash kernel ------------
+
+# Installer le kernelspec bash dans l'environnement courant
+ENV_PREFIX="${CONDA_PREFIX:-/srv/conda/envs/notebook}"
+
+"${ENV_PREFIX}/bin/python" -m bash_kernel.install --sys-prefix
+
+KERNEL_JSON="${ENV_PREFIX}/share/jupyter/kernels/bash/kernel.json"
+
+# Modification du kernel.json
+python - "${KERNEL_JSON}" "${ENV_PREFIX}" <<'PY'
+import json
+import sys
+
+kernel_json = sys.argv[1]
+env_prefix = sys.argv[2]
+
+with open(kernel_json) as f:
+    spec = json.load(f)
+
+spec.setdefault("env", {})["PATH"] = f"{env_prefix}/bin:${{PATH}}"
+spec["env"]["CONDA_PREFIX"] = env_prefix
+
+with open(kernel_json, "w") as f:
+    json.dump(spec, f, indent=2)
+    f.write("\n")
+PY
+
+#-------- R kernel and packages ------------
 # Enregistre le kernel R pour cet environnement
 R --quiet -e "IRkernel::installspec(prefix='/srv/conda/envs/notebook')" || true
 
