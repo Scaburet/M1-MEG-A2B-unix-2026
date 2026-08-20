@@ -29,7 +29,7 @@ with open(kernel_json, "w") as f:
 PY
 
 #-------- R kernel and packages ------------
-# Enregistre le kernel R pour cet environnement
+# Gère le kernel R pour cet environnement
 R --quiet -e "IRkernel::installspec(prefix='/srv/conda/envs/notebook')" || true
 
 # Install R packages
